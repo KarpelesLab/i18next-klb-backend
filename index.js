@@ -45,4 +45,4 @@ class Backend {
 
 Backend.type = 'backend';
 
-export default Backend;
+module.exports.Backend = Backend;

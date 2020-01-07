@@ -1,6 +1,6 @@
 {
   "name": "@karpeleslab/i18next-klb-backend",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "backend layer for i18next using klb system",
   "main": "index.js",
   "keywords": [
