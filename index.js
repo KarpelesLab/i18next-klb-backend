@@ -4,24 +4,12 @@ const defaults = {
   allowMultiLoading: false,
 };
 
-class BackendError extends Error {
-  retry = null;
-
-  constructor(message, retry = false) {
-    super(message);
-
-    this.retry = retry;
-  }
-}
-
 class Backend {
   constructor(services, options) {
     this.init(services, options);
+
+    this.type = 'backend';
   }
-
-  type = 'backend'
-
-  static type = 'backend'
 
   init(services, options = {}) {
     this.services = services;
@@ -43,19 +31,18 @@ class Backend {
       .then(function(res) {
         if (!res.ok) {
           const retry = res.status >= 500 && res.status < 600; // don't retry for 4xx codes
-          throw new BackendError(`failed loading ${url}`, retry);
+	  callback(`failed loading ${url}`, retry);
+	  return;
         }
         return res.json();
       })
       .then(function(res) { callback(null, res); })
       .catch(function(err) {
-        if (e instanceof BackendError) {
-          callback(e.message, e.retry);
-        } else {
-          callback(e, false);
-        }
+        callback(e, false);
       });
   }
 }
+
+Backend.type = 'backend';
 
 export default Backend;
