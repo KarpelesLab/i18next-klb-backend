@@ -24,6 +24,7 @@ class Backend {
   read(language, namespace, callback) {
     if (typeof __platformGetI18N !== "undefined") {
       callback(null, __platformGetI18N(language));
+      return;
     }
 
     // load via fetch: /_special/locale/<lng>.json
