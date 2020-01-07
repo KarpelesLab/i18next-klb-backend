@@ -1,0 +1,25 @@
+{
+  "name": "i18next-klb-backend",
+  "version": "0.0.1",
+  "description": "backend layer for i18next using klb system",
+  "main": "index.js",
+  "keywords": [
+    "i18next",
+    "i18next-backend"
+  ],
+  "homepage": "https://github.com/KarpelesLab/i18next-klb-backend",
+  "bugs": "https://github.com/KarpelesLab/i18next-klb-backend/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarpelesLab/i18next-klb-backend.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mark Karpeles <mark@klb.jp> https://klb.jp",
+  "license": "MIT",
+  "lock": false
+}
