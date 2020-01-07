@@ -35,7 +35,6 @@ class Backend {
 
   read(language, namespace, callback) {
     if (typeof __platformGetI18N !== "undefined") {
-      let lng = __platformGetI18N(language);
       callback(null, __platformGetI18N(language));
     }
 
@@ -56,9 +55,6 @@ class Backend {
           callback(e, false);
         }
       });
-  }
-
-  readMulti(languages, namespaces, callback) {
   }
 }
 
