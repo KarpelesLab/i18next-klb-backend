@@ -22,8 +22,15 @@ class Backend {
   }
 
   read(language, namespace, callback) {
-    if (typeof __platformGetI18N !== "undefined") {
-      callback(null, __platformGetI18N(language));
+    if (language.length != 5) {
+      // ignore this (tip: you should set load: 'currentOnly' in i18next options)
+      // this can happen if i18next attempts to load spepcial language "dev" or "en" instead of "en-US"
+      callback(null, {});
+      return;
+    }
+    if ((typeof FW !== "undefined") && (language == FW.Locale) && (typeof FW.i18n !== "undefined")) {
+      // we already know about this language, use it
+      callback(null, FW.i18n);
       return;
     }
 
