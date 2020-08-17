@@ -46,7 +46,7 @@ class Backend {
       })
       .then(function(res) { callback(null, res); })
       .catch(function(err) {
-        callback(e, false);
+        callback(err, false);
       });
   }
 }
