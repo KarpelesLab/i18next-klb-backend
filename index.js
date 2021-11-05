@@ -34,12 +34,24 @@ class Backend {
       return;
     }
 
-    // load via fetch: /_special/locale/<lng>.json
-    fetch("/_special/locale/"+language+".json")
+    // load via: /l/<lng>/locale.json
+    var pfx = "";
+    if (typeof FW !== "undefined") {
+        pfx = FW.prefix;
+    }
+    // pfx=""
+    // pfx="/l/en-US"
+    // pfx="/b/test/l/en-US/z/foobar"
+    var newpfx = pfx.replace(/\/l\/[a-z]{2}-[A-Z]{2}/, "/l/"+language);
+    if (newpfx == pfx) {
+        newpfx = newpfx = "/l/"+language;
+    }
+    // fallback to fetch: /_special/locale/<lng>.json
+    fetch(newpfx+"/_special/locale.json").catch(function(err) { return fetch("/_special/locale/"+language+".json"); })
       .then(function(res) {
         if (!res.ok) {
           const retry = res.status >= 500 && res.status < 600; // don't retry for 4xx codes
-	  callback(`failed loading ${url}`, retry);
+	  callback(`failed loading i18n`, retry);
 	  return;
         }
         return res.json();
