@@ -13,11 +13,13 @@ npm install @karpeleslab/i18next-klb-backend
 ```javascript
 import i18next from 'i18next';
 import { Backend } from '@karpeleslab/i18next-klb-backend';
+import { getLocale } from "@karpeleslab/klbfw";
 
 i18next
   .use(Backend)
   .init({
     // Backend options
+    lng: getLocale(),
     backend: {
       // any custom options
     },
