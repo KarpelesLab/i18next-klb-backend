@@ -32,6 +32,27 @@ i18next
   });
 ```
 
+## TypeScript Support
+
+This package includes TypeScript type definitions:
+
+```typescript
+import i18next from 'i18next';
+import { Backend, BackendOptions } from '@karpeleslab/i18next-klb-backend';
+
+const options: BackendOptions = {
+  allowMultiLoading: false,
+  // other options
+};
+
+i18next
+  .use(Backend)
+  .init({
+    backend: options,
+    // other i18next options
+  });
+```
+
 ## How it works
 
 This backend loads translations from your KLB system by:
@@ -53,6 +74,7 @@ The backend expects translations in JSON format with the structure:
 - Integrates with KLB framework globals (`FW.Locale`, `FW.i18n`, `FW.prefix`)
 - Automatically handles language code format (requires 5-character codes like 'en-US')
 - Simple interface with minimal configuration
+- TypeScript definitions included
 
 ## License
 
