@@ -1,19 +1,17 @@
-declare namespace I18NextKlbBackend {
-  export interface BackendOptions {
-    allowMultiLoading?: boolean;
-    [key: string]: any;
-  }
+import { BackendModule, Services, ReadCallback, InitOptions } from 'i18next';
 
-  export class Backend {
-    constructor(services: any, options?: BackendOptions);
-    init(services: any, options?: BackendOptions): void;
-    read(language: string, namespace: string, callback: (err: Error | null, data?: any) => void): void;
-    type: string;
-    static type: string;
-  }
+export interface BackendOptions {
+  allowMultiLoading?: boolean;
+  [key: string]: any;
 }
 
-export const Backend: typeof I18NextKlbBackend.Backend;
+export class Backend implements BackendModule {
+  constructor(services: Services, options?: BackendOptions);
+  init(services: Services, options?: BackendOptions & InitOptions): void;
+  read(language: string, namespace: string, callback: ReadCallback): void;
+  type: 'backend';
+  static type: 'backend';
+}
 
 // Helper function to get locale from FW object
 export function getLocale(): string | undefined;
